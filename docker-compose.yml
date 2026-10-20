@@ -1,3 +1,4 @@
+# Local PostgreSQL. Flyway (in the backend) owns the schema, so no init scripts are mounted here.
 services:
   db:
     image: postgres:16
@@ -9,7 +10,6 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./db/migration:/docker-entrypoint-initdb.d:ro   # runs V1, V2 on first start
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U prep -d prep_planner"]
       interval: 5s

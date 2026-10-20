@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: backend
+  datasource:
+    # Defaults match docker-compose.yml; override with env vars in other environments.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/prep_planner}
+    username: ${DB_USER:prep}
+    password: ${DB_PASSWORD:prep_local_only}
+  flyway:
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
